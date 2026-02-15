@@ -1,62 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Valentine?</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            width: 300px;
-        }
-        h1 { color: #e91e63; }
-        button {
-            padding: 10px 20px;
-            margin: 10px;
-            border: none;
-            border-radius: 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .yes { background-color: #4caf50; color: white; }
-        .no { background-color: #f44336; color: white; }
-        #result {
-            margin-top: 20px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Valentine?</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.card {
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    width: 320px;
+}
+
+h1 {
+    color: #e91e63;
+    animation: heartbeat 1.2s infinite;
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.05); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.05); }
+}
+
+.buttons {
+    margin-top: 20px;
+    position: relative;
+}
+
+button {
+    padding: 12px 25px;
+    margin: 10px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.yes {
+    background-color: #4caf50;
+    color: white;
+}
+
+.no {
+    background-color: #f44336;
+    color: white;
+    position: absolute;
+}
+
+#result {
+    margin-top: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    animation: pop 0.5s ease;
+}
+
+@keyframes pop {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+</style>
 </head>
+
 <body>
 
 <div class="card">
-    <h1>Will you be my Valentine? 💝</h1>
-    <button class="yes" onclick="yesClick()">Yes</button>
-    <button class="no" onclick="noClick()">No</button>
+    <h1>Will you be my Valentine? 💖</h1>
+
+    <div class="buttons">
+        <button class="yes" onclick="yesClick()">Yes</button>
+        <button class="no" id="noBtn">No</button>
+    </div>
+
     <div id="result"></div>
 </div>
 
 <script>
-    function yesClick() {
-        document.getElementById("result").innerHTML =
-            "Super 😄<br>but I want to be single ✨";
-    }
-    function noClick() {
-        document.getElementById("result").innerHTML =
-            "Good pick bro 😎<br>I want to be single toooo ✌️";
-    }
+function yesClick() {
+    document.getElementById("result").innerHTML =
+        "Super 😄<br>but I want to be single ✨";
+}
+
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * 200 - 100;
+    const y = Math.random() * 100 - 50;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+noBtn.addEventListener("click", () => {
+    document.getElementById("result").innerHTML =
+        "Good pick bro 😎<br>I want to be single toooo ✌️";
+});
 </script>
 
 </body>
